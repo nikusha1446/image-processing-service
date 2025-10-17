@@ -1,6 +1,6 @@
 import express from 'express';
+import { config } from './config/env.js';
 
-const PORT = process.env.PORT || 3000;
 const app = express();
 
 // middleware
@@ -11,10 +11,13 @@ app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'OK',
     message: 'Image Processing Service is running',
+    environment: config.nodeEnv,
   });
 });
 
 // start server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(config.port, () => {
+  console.log(
+    `Server is running on port ${config.port} in ${config.nodeEnv} mode`
+  );
 });
