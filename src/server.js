@@ -1,6 +1,7 @@
 import express from 'express';
 import { config } from './config/env.js';
 import { connectDB } from './config/db.js';
+import authRoutes from './routes/authRoutes.js';
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.get('/health', (req, res) => {
     environment: config.nodeEnv,
   });
 });
+
+app.use('/api/v1/auth', authRoutes);
 
 // start server
 const startServer = async () => {
