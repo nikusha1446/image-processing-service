@@ -1,5 +1,5 @@
 import express from 'express';
-import { uploadImage } from '../controller/imageController.js';
+import { getImageById, uploadImage } from '../controller/imageController.js';
 import { authenticate } from '../middleware/authMiddleware.js';
 import {
   uploadSingle,
@@ -9,5 +9,6 @@ import {
 const router = express.Router();
 
 router.post('/', authenticate, uploadSingle, handleMulterError, uploadImage);
+router.get('/:id', authenticate, getImageById);
 
 export default router;
