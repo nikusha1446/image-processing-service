@@ -2,6 +2,7 @@ import express from 'express';
 import { config } from './config/env.js';
 import { connectDB } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
+import imageRoutes from './routes/imageRoutes.js';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/images', imageRoutes);
 
 // start server
 const startServer = async () => {
